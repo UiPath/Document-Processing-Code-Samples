@@ -7,11 +7,11 @@
     <ProjectGuid>{8A3C8ED7-9769-438C-AD60-F3001DB9D911}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DocumentClassification</RootNamespace>
-    <AssemblyName>DocumentClassification</AssemblyName>
+    <RootNamespace>SampleActivities</RootNamespace>
+    <AssemblyName>SampleActivities</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <Deterministic>false</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +53,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic\DataExtraction\SimpleExtractorDesigner.xaml.cs">
+      <DependentUpon>SimpleExtractorDesigner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\DataExtraction\SimpleExtractor.cs" />
     <Compile Include="Basic\DocumentClassification\SimpleClassifier.cs" />
     <Compile Include="Basic\DocumentClassification\SimpleClassifierDesigner.xaml.cs">
       <DependentUpon>SimpleClassifierDesigner.xaml</DependentUpon>
@@ -64,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Basic\DataExtraction\SimpleExtractorDesigner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Basic\DocumentClassification\SimpleClassifierDesigner.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,7 +79,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if exist $(TargetDir)\..\Packages\DocumentClassification*.* del $(TargetDir)\..\Packages\DocumentClassification*.*
+    <PostBuildEvent>if exist $(TargetDir)\..\Packages\SampleActivities*.* del $(TargetDir)\..\Packages\SampleActivities*.*
 if $(ConfigurationName) == Debug "$(SolutionDir).nuget\NuGet.exe" pack "$(ProjectPath)" -OutputDirectory "..\Packages" -IncludeReferencedProjects -Prop Configuration=$(ConfigurationName)</PostBuildEvent>
   </PropertyGroup>
 </Project>
