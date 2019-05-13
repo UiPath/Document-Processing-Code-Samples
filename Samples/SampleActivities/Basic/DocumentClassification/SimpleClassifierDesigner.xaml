@@ -1,0 +1,5 @@
+﻿<sap:ActivityDesigner x:Class="SampleActivities.Basic.DocumentClassification.SimpleClassifierDesigner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation">
+</sap:ActivityDesigner>
