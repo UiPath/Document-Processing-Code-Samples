@@ -65,8 +65,7 @@ namespace SampleActivities.Basic.DataExtraction
         private static ResultsDataPoint CreateDateFieldDataPoint(Field firstDateField, Document document)
         {
             // TODO
-            //var derivedFields = ResultsDerivedField.CreateDateParts(1, 1, 2002);
-            var derivedFields = new ResultsDerivedField[0];
+            var derivedFields = ResultsDerivedField.CreateDerivedFieldsForDate(1, 1, 2002);
             var firstDateValue = CreateResultsValue(0, document, "Jan 1st 2002");
             firstDateValue.DerivedFields = derivedFields;
 
