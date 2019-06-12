@@ -72,6 +72,7 @@ namespace SampleActivities.Basic.DataExtraction
             return new ResultsDataPoint(
                 firstDateField.FieldId,
                 firstDateField.FieldName,
+                firstDateField.Type,
                 new[] { firstDateValue });
         }
 
@@ -84,22 +85,24 @@ namespace SampleActivities.Basic.DataExtraction
             return new ResultsDataPoint(
                 firstBooleanField.FieldId,
                 firstBooleanField.FieldName,
+                firstBooleanField.Type,
                 new[] { firstBooleanValue });
         }
 
         private static ResultsDataPoint CreateTableFieldDataPoint(Field firstTableField, Document document)
         {
             int i = 0;
-            var headerCells = firstTableField.Components.Select(c => new ResultsDataPoint(c.FieldId, c.FieldName, new[] { CreateResultsValue(i++, document) }));
+            var headerCells = firstTableField.Components.Select(c => new ResultsDataPoint(c.FieldId, c.FieldName, c.Type, new[] { CreateResultsValue(i++, document) }));
 
-            var firstRowCells = firstTableField.Components.Select(c => new ResultsDataPoint(c.FieldId, c.FieldName, new[] { CreateResultsValue(i++, document) }));
-            var secondRowCells = firstTableField.Components.Select(c => new ResultsDataPoint(c.FieldId, c.FieldName, new[] { CreateResultsValue(i++, document) }));
+            var firstRowCells = firstTableField.Components.Select(c => new ResultsDataPoint(c.FieldId, c.FieldName, c.Type, new[] { CreateResultsValue(i++, document) }));
+            var secondRowCells = firstTableField.Components.Select(c => new ResultsDataPoint(c.FieldId, c.FieldName, c.Type, new[] { CreateResultsValue(i++, document) }));
 
             var tableValue = ResultsValue.CreateTableValue(firstTableField, headerCells, new[] { firstRowCells, secondRowCells }, 0.9f, 1f);
 
             return new ResultsDataPoint(
                 firstTableField.FieldId,
                 firstTableField.FieldName,
+                firstTableField.Type,
                 new[] { tableValue });
         }
 

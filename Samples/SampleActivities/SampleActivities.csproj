@@ -47,8 +47,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UiPath.DocumentProcessing.Contracts, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UiPath.DocumentProcessing.Contracts.1.1.0-beta.318156\lib\net461\UiPath.DocumentProcessing.Contracts.dll</HintPath>
+    <Reference Include="UiPath.DocumentProcessing.Contracts, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UiPath.DocumentProcessing.Contracts.1.2.0-beta.360487\lib\net461\UiPath.DocumentProcessing.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
