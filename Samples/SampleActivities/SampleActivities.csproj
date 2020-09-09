@@ -40,6 +40,7 @@
     <Reference Include="System.Activities" />
     <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +50,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="UiPath.DocumentProcessing.Contracts, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UiPath.DocumentProcessing.Contracts.1.2.0\lib\net461\UiPath.DocumentProcessing.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="UiPath.OCR.Contracts, Version=2.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UiPath.OCR.Contracts.2.7.1-preview\lib\net461\UiPath.OCR.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -61,6 +65,8 @@
     <Compile Include="Basic\DocumentClassification\SimpleClassifierDesigner.xaml.cs">
       <DependentUpon>SimpleClassifierDesigner.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Basic\OCR\OCRResultHelper.cs" />
+    <Compile Include="Basic\OCR\SimpleOCREngine.cs" />
     <Compile Include="DesignerMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,6 +83,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if exist $(TargetDir)\..\Packages\SampleActivities*.* del $(TargetDir)\..\Packages\SampleActivities*.*
