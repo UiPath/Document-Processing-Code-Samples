@@ -48,11 +48,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UiPath.DocumentProcessing.Contracts, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UiPath.DocumentProcessing.Contracts.1.2.0\lib\net461\UiPath.DocumentProcessing.Contracts.dll</HintPath>
+    <Reference Include="UiPath.DocumentProcessing.Contracts, Version=1.10.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UiPath.DocumentProcessing.Contracts.1.10.1\lib\net461\UiPath.DocumentProcessing.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="UiPath.OCR.Contracts, Version=2.7.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UiPath.OCR.Contracts.2.7.1-preview\lib\net461\UiPath.OCR.Contracts.dll</HintPath>
+    <Reference Include="UiPath.OCR.Contracts, Version=2.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UiPath.OCR.Contracts.2.7.3\lib\net461\UiPath.OCR.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -67,6 +67,11 @@
     </Compile>
     <Compile Include="Basic\OCR\OCRResultHelper.cs" />
     <Compile Include="Basic\OCR\SimpleOCREngine.cs" />
+    <Compile Include="Basic\OCR\SimpleOCRScrape.cs" />
+    <Compile Include="Basic\OCR\SimpleOCRScrapeFactory.cs" />
+    <Compile Include="Basic\OCR\SimpleScrapeControl.xaml.cs">
+      <DependentUpon>SimpleScrapeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DesignerMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +84,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Basic\DocumentClassification\SimpleClassifierDesigner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Basic\OCR\SimpleScrapeControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

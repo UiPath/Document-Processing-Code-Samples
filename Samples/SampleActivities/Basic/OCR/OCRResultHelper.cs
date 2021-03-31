@@ -11,13 +11,13 @@ namespace SampleActivities.Basic.OCR
             return new OCRResult
             {
                 Text = text,
-                Words = text.Split(' ').Select(word => new Word
+                Words = text.Split(' ').Select((word, i) => new Word
                 {
                     Text = word,
                     Characters = word.Select(ch => new Character
                     {
                         Char = ch,
-                        PolygonPoints = new[] { new PointF(100, 100), new PointF(200, 100), new PointF(100, 200), new PointF(200, 200), }
+                        PolygonPoints = new[] { new PointF((i + 1) * 100, (i + 1) * 100), new PointF((i + 1) * 200, (i + 1) * 100), new PointF((i + 1) * 100, (i + 1) * 200), new PointF((i + 1) * 200, (i + 1) * 200), }
                     }).ToArray()
                 }).ToArray(),
                 Confidence = 0,

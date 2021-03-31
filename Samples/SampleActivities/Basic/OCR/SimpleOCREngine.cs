@@ -1,5 +1,6 @@
 ﻿using System.Activities;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,6 +11,9 @@ namespace SampleActivities.Basic.OCR
 {
     public class SimpleOCREngine : OCRCodeActivity
     {
+        [Browsable(true)]
+        public override InArgument<Image> Image { get => base.Image; set => base.Image = value; }
+
         public InArgument<string> CustomInput { get; set; }
 
         public OutArgument<string> CustomOutput { get; set; }
