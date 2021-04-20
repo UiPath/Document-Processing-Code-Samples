@@ -72,6 +72,7 @@
     <Compile Include="Basic\OCR\SimpleScrapeControl.xaml.cs">
       <DependentUpon>SimpleScrapeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Basic\OCR\UsageToVisibilityConverter.cs" />
     <Compile Include="DesignerMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

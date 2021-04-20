@@ -28,6 +28,7 @@ namespace SampleActivities
             builder.AddCustomAttributes(typeof(SimpleExtractor), simpleExtractorDesigner);
 
             builder.AddCustomAttributes(typeof(SimpleOCREngine), ocrCategoryAttribute);
+            builder.AddCustomAttributes(typeof(SimpleOCREngine), nameof(SimpleOCREngine.Result), new CategoryAttribute("Output"));
 
             MetadataStore.AddAttributeTable(builder.CreateTable());
         }

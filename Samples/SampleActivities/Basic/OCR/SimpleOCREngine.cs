@@ -11,11 +11,18 @@ namespace SampleActivities.Basic.OCR
 {
     public class SimpleOCREngine : OCRCodeActivity
     {
+        [Category("Input")]
         [Browsable(true)]
         public override InArgument<Image> Image { get => base.Image; set => base.Image = value; }
 
+        [Category("Output")]
+        [Browsable(true)]
+        public override OutArgument<string> Text { get => base.Text; set => base.Text = value; }
+
+        [Category("Input")]
         public InArgument<string> CustomInput { get; set; }
 
+        [Category("Output")]
         public OutArgument<string> CustomOutput { get; set; }
 
         public override Task<OCRResult> PerformOCRAsync(Image image, Dictionary<string, object> options, CancellationToken ct)

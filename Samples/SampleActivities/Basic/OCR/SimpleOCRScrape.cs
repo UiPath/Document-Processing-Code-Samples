@@ -8,14 +8,13 @@ namespace SampleActivities.Basic.OCR
     // with wizards such as Screen Scraping or Template Manager.
     internal class SampleOCRScrape : OCRScrapeBase
     {
-        private readonly ScrapeEngineUsages _usage;
-        private readonly SimpleScrapeControl _sampleScrapeControl = new SimpleScrapeControl();
+        private readonly SimpleScrapeControl _sampleScrapeControl;
 
         public override ScrapeEngineUsages Usage { get; } = ScrapeEngineUsages.Document | ScrapeEngineUsages.Screen;
 
         public SampleOCRScrape(IOCRActivity ocrEngineActivity, ScrapeEngineUsages usage) : base(ocrEngineActivity)
         {
-            _usage = usage;
+            _sampleScrapeControl = new SimpleScrapeControl(usage);
         }
 
         public override ScrapeControlBase GetScrapeControl()

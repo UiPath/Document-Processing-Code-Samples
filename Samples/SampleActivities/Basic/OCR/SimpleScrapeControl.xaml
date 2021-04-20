@@ -4,12 +4,21 @@
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:scrape="http://schemas.uipath.com/workflow/activities/vision"
+                   xmlns:converters="clr-namespace:SampleActivities.Basic.OCR"
                    mc:Ignorable="d" 
                    d:DesignHeight="450" d:DesignWidth="800" x:ClassModifier="internal">
+    <UserControl.Resources>
+        <converters:UsageToVisibilityConverter x:Key="DocumentVisibilityConverter" Document="Visible" Screen="Collapsed" />
+        <converters:UsageToVisibilityConverter x:Key="ScreenVisibilityConverter" Document="Collapsed" Screen="Visible" />
+    </UserControl.Resources>
     <Grid>
         <StackPanel>
             <DockPanel LastChildFill="True" Margin="0,5,0,0">
-                <Label Content="Sample Input:" 
+                <Label Visibility="{Binding Usage, Converter={StaticResource DocumentVisibilityConverter}}"
+                       Content="Sample Document Input:" 
+                       DockPanel.Dock="Left"/>
+                <Label Visibility="{Binding Usage, Converter={StaticResource ScreenVisibilityConverter}}"
+                       Content="Sample Screen Input:" 
                        DockPanel.Dock="Left"/>
                 <TextBox DockPanel.Dock="Right" Margin="5,0,0,0"
                           Text="{Binding Path=SampleInput, Mode=TwoWay}"

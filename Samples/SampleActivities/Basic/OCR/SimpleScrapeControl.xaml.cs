@@ -10,7 +10,13 @@ namespace SampleActivities.Basic.OCR
         public string SampleInput { get; set; }
 
         public SimpleScrapeControl()
+            : this (ScrapeEngineUsages.Screen)
         {
+        }
+
+        public SimpleScrapeControl(ScrapeEngineUsages usage)
+        {
+            Usage = usage;
             InitializeComponent();
             DataContext = this;
         }
