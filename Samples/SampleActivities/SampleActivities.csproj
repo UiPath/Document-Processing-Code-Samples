@@ -1,102 +1,64 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8A3C8ED7-9769-438C-AD60-F3001DB9D911}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SampleActivities</RootNamespace>
-    <AssemblyName>SampleActivities</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>false</Deterministic>
+    <TargetFrameworks>net461;net6.0-windows7.0;net6.0</TargetFrameworks>
+	<Deterministic>false</Deterministic>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<OutputPath>$(ProjectDir)..\Output\SampleActivities</OutputPath>
+    <DefineConstants Condition="'$(TargetFramework)' == 'net6.0'">$(DefineConstants);NETSTANDARD;NETPORTABLE_UIPATH</DefineConstants>
+
+	<PackageId>SampleActivities</PackageId>
+	<PackageVersion>$(Version)</PackageVersion>
+	<Title>UiPath Sample Activities</Title>
+	<Authors>UiPath</Authors>
+	<Description>UiPath Document Understanding Sample Activities.</Description>
+	<PackageOutputPath>$(ProjectDir)..\Output\Packages</PackageOutputPath>
+	<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Debug'">true</GeneratePackageOnBuild>
+	<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">false</GeneratePackageOnBuild>
+	<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup>
+	<Product>SampleActivities</Product>
+	<VersionMajor>1</VersionMajor>
+	<VersionMinor>0</VersionMinor>
+	<VersionBuild>0</VersionBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+	<VersionBuild>$(VersionBuild)$([System.DateTime]::UtcNow.DayOfYear.ToString("F0"))</VersionBuild>
+	<VersionRevision>$([System.Math]::Floor($([MSBuild]::Divide($([System.DateTime]::UtcNow.TimeOfDay.TotalMinutes), 5))))</VersionRevision>
+	<VersionPrefix>$(VersionMajor).$(VersionMinor).$(VersionBuild)-dev.$(VersionRevision)</VersionPrefix>
+	<AssemblyVersion>$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)</AssemblyVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Activities" />
-    <Reference Include="System.Activities.Presentation" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UiPath.DocumentProcessing.Contracts, Version=1.10.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UiPath.DocumentProcessing.Contracts.1.10.1\lib\net461\UiPath.DocumentProcessing.Contracts.dll</HintPath>
-    </Reference>
-    <Reference Include="UiPath.OCR.Contracts, Version=2.7.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UiPath.OCR.Contracts.2.7.3\lib\net461\UiPath.OCR.Contracts.dll</HintPath>
-    </Reference>
+
+  <PropertyGroup Condition="'$(TargetFramework)' != 'net6.0'">
+	<UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
     <Reference Include="WindowsBase" />
+	<Reference Include="System.Activities" />
+	<Reference Include="System.Activities.Presentation" />
+	<Reference Include="PresentationCore" />
+	<Reference Include="PresentationFramework" />
+	<Reference Include="System.Xaml" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
+	<PackageReference Include="System.Activities" Version="5.0.0-20210922-03" PrivateAssets="All" />
+	<PackageReference Include="System.Drawing.Common" Version="5.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Basic\DataExtraction\SimpleExtractorDesigner.xaml.cs">
-      <DependentUpon>SimpleExtractorDesigner.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Basic\DataExtraction\SimpleExtractor.cs" />
-    <Compile Include="Basic\DocumentClassification\SimpleClassifier.cs" />
-    <Compile Include="Basic\DocumentClassification\SimpleClassifierDesigner.xaml.cs">
-      <DependentUpon>SimpleClassifierDesigner.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Basic\OCR\OCRResultHelper.cs" />
-    <Compile Include="Basic\OCR\SimpleOCREngine.cs" />
-    <Compile Include="Basic\OCR\SimpleOCRScrape.cs" />
-    <Compile Include="Basic\OCR\SimpleOCRScrapeFactory.cs" />
-    <Compile Include="Basic\OCR\SimpleScrapeControl.xaml.cs">
-      <DependentUpon>SimpleScrapeControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Basic\OCR\UsageToVisibilityConverter.cs" />
-    <Compile Include="DesignerMetadata.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="UiPath.DocumentProcessing.Contracts" Version="1.17.1" />
+    <PackageReference Include="UiPath.OCR.Contracts" Version="2.13.0" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0-windows7.0' ">
+	<PackageReference Include="System.Activities.Core.Presentation" PrivateAssets="All" />
   </ItemGroup>
-  <ItemGroup>
-    <Page Include="Basic\DataExtraction\SimpleExtractorDesigner.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Basic\DocumentClassification\SimpleClassifierDesigner.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Basic\OCR\SimpleScrapeControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>if exist $(TargetDir)\..\Packages\SampleActivities*.* del $(TargetDir)\..\Packages\SampleActivities*.*
-if $(ConfigurationName) == Debug "$(SolutionDir).nuget\NuGet.exe" pack "$(ProjectPath)" -OutputDirectory "..\Packages" -IncludeReferencedProjects -Prop Configuration=$(ConfigurationName)</PostBuildEvent>
-  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(ConfigurationName)' == 'Debug' ">
+	<Exec Command="if exist &quot;$(SolutionDir)Output\Packages\$(PackageId).*&quot; del &quot;$(SolutionDir)Output\Packages\$(PackageId).*&quot;" />
+  </Target>
+
 </Project>

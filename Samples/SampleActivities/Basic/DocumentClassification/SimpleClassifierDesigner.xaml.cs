@@ -1,4 +1,5 @@
-﻿namespace SampleActivities.Basic.DocumentClassification
+﻿#if !NETPORTABLE_UIPATH
+namespace SampleActivities.Basic.DocumentClassification
 {
     /// <summary>
     /// Interaction logic for SimpleClassifierDesigner.xaml
@@ -11,3 +12,4 @@
         }
     }
 }
+#endif

@@ -1,4 +1,5 @@
-﻿namespace SampleActivities.Basic.DataExtraction
+﻿#if !NETPORTABLE_UIPATH
+namespace SampleActivities.Basic.DataExtraction
 {
     /// <summary>
     /// Interaction logic for SimpleExtractorDesigner.xaml
@@ -11,3 +12,4 @@
         }
     }
 }
+#endif

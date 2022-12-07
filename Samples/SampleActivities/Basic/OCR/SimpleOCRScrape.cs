@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if !NETPORTABLE_UIPATH
+using System.Collections.Generic;
 using UiPath.OCR.Contracts.Activities;
 using UiPath.OCR.Contracts.Scrape;
 
@@ -31,3 +32,4 @@ namespace SampleActivities.Basic.OCR
         }
     }
 }
+#endif

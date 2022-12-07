@@ -1,4 +1,5 @@
-﻿using UiPath.OCR.Contracts.Scrape;
+﻿#if !NETPORTABLE_UIPATH
+using UiPath.OCR.Contracts.Scrape;
 
 namespace SampleActivities.Basic.OCR
 {
@@ -22,3 +23,4 @@ namespace SampleActivities.Basic.OCR
         }
     }
 }
+#endif

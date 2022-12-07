@@ -1,4 +1,5 @@
-﻿using System.Activities.Presentation.Metadata;
+﻿#if !NETPORTABLE_UIPATH
+using System.Activities.Presentation.Metadata;
 using System.ComponentModel;
 using SampleActivities.Basic.DataExtraction;
 using SampleActivities.Basic.DocumentClassification;
@@ -34,3 +35,4 @@ namespace SampleActivities
         }
     }
 }
+#endif

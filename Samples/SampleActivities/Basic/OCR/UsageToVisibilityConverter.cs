@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NETPORTABLE_UIPATH
+using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
@@ -29,3 +30,4 @@ namespace SampleActivities.Basic.OCR
         }
     }
 }
+#endif
