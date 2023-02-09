@@ -20,10 +20,16 @@ namespace SampleActivities.Basic.DataExtraction
 
         protected override IAsyncResult BeginExecute(AsyncCodeActivityContext context, AsyncCallback callback, object state)
         {
-            return null;
+            return Task.Run(() => Execute(context));
         }
 
-        protected override void EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+        protected override async void EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+        {
+            var task = (Task)result;
+            await task;
+        }
+
+        protected void Execute(CodeActivityContext context)
         {
             ExtractorDocumentType documentType = ExtractorDocumentType.Get(context);
             ResultsDocumentBounds documentBounds = DocumentBounds.Get(context);

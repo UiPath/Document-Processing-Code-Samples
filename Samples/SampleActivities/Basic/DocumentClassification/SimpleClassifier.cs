@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Activities;
 using System.Linq;
+using System.Threading.Tasks;
 using UiPath.DocumentProcessing.Contracts.Classification;
 using UiPath.DocumentProcessing.Contracts.Dom;
 using UiPath.DocumentProcessing.Contracts.Results;
@@ -17,10 +18,16 @@ namespace SampleActivities.Basic.DocumentClassification
 
         protected override IAsyncResult BeginExecute(AsyncCodeActivityContext context, AsyncCallback callback, object state)
         {
-            return null;
+            return Task.Run(() => Execute(context));
         }
 
-        protected override void EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+        protected override async void EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+        {
+            var task = (Task)result;
+            await task;
+        }
+
+        protected void Execute(CodeActivityContext context)
         {
             string text = DocumentText.Get(context);
             Document document = DocumentObjectModel.Get(context);
