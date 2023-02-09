@@ -1,4 +1,5 @@
-﻿using System.Activities;
+﻿using System;
+using System.Activities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,14 +11,19 @@ using UiPath.DocumentProcessing.Contracts.Taxonomy;
 
 namespace SampleActivities.Basic.DataExtraction
 {
-    public class SimpleExtractor : ExtractorCodeActivity
+    public class SimpleExtractor : ExtractorAsyncCodeActivity
     {
         public override Task<ExtractorDocumentTypeCapabilities[]> GetCapabilities()
         {
             return Task.FromResult(new ExtractorDocumentTypeCapabilities[0]);
         }
 
-        protected override void Execute(CodeActivityContext context)
+        protected override IAsyncResult BeginExecute(AsyncCodeActivityContext context, AsyncCallback callback, object state)
+        {
+            return null;
+        }
+
+        protected override void EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
         {
             ExtractorDocumentType documentType = ExtractorDocumentType.Get(context);
             ResultsDocumentBounds documentBounds = DocumentBounds.Get(context);

@@ -1,4 +1,5 @@
-﻿using System.Activities;
+﻿using System;
+using System.Activities;
 using System.Linq;
 using UiPath.DocumentProcessing.Contracts.Classification;
 using UiPath.DocumentProcessing.Contracts.Dom;
@@ -9,12 +10,17 @@ namespace SampleActivities.Basic.DocumentClassification
     /// <summary>
     /// This sample classifier takes the first word from the given document page as evidence, returning the first document type as the classification result.
     /// </summary>
-    public class SimpleClassifier : ClassifierCodeActivity
+    public class SimpleClassifier : ClassifierAsyncCodeActivity
     {
         // Example input argument
         public InArgument<int> EvidencePage { get; set; }
-             
-        protected override void Execute(CodeActivityContext context)
+
+        protected override IAsyncResult BeginExecute(AsyncCodeActivityContext context, AsyncCallback callback, object state)
+        {
+            return null;
+        }
+
+        protected override void EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
         {
             string text = DocumentText.Get(context);
             Document document = DocumentObjectModel.Get(context);
